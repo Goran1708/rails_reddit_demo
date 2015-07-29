@@ -1,0 +1,10 @@
+<%= form_for [@post.subreddit, @post] do |s| %>
+  <%= s.text_field :title %>
+  </br>
+  <%= s.text_field :content %>
+  </br>
+  <%= debug @post.subreddit.id %>
+  <%#= s.hidden_field :subreddit_id, :value => @post.subreddit.id %>
+  </br>
+  <%= s.submit :send %>
+<% end %>

@@ -1,0 +1,15 @@
+<ul class="list-group">
+  <% @posts.each do |post| %>
+    <li class="row list-group-item">
+      <%= link_to post.title, subreddit_post_path(subreddit_id: post.subreddit.id, id: post.id) %>
+      </br>
+      submitted <%= "#{time_ago_in_words(post.created_at)} ago " %>
+      &nbsp to &nbsp <%= link_to post.subreddit.name, subreddit_path(id: post.subreddit_id) %>
+      </br>
+      <b><%= post.comments.count %> comments</b>
+      </br>
+      </br>
+    </li>
+  <% end %>
+<ul>
+<%= will_paginate @posts, renderer: BootstrapPagination::Rails%>

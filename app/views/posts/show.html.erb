@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-sm-9">
+    <div class="row">
+      <div class="col-sm-12" style="padding-left:100px; border-right: 3px solid #ccc">
+        <h4><b><%= @post.title %></b></h4>
+        <%= link_to 'Edit', edit_subreddit_post_path(@post.subreddit, @post) %> |
+        <%= link_to 'Destroy', [@post.subreddit, @post], method: :delete, data: 
+                                                { confirm: 'Are you sure?' } %>
+        <small>submitted <strong><%= "#{time_ago_in_words(@post.created_at)} " %></strong> ago
+        by <b><font color="#c80303">USERNAME</font></b> in 
+        
+        <%= link_to @post.subreddit.name, subreddit_path(id: @post.subreddit_id), 
+                                  {:style=>'color:#c80303;', :class => "css_class"} %></small>
+               
+        </br>
+        </br>
+        <%= @post.content %>
+        </br>
+        </br>
+      </div>
+    </div>
+    <div class="row" style="padding-bottom: 10px;">
+      <div class="col-sm-12" style="background-color: #f8f8f8; padding-left:100px; 
+                                              padding-top: 10px; border-right: 3px solid #ccc">
+        <b><small> <%= @post.comments.count %> comments </small></b> 
+        <small> - leave your mark </small>
+          <%= render 'comments/form' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12" style="border-right: 3px solid #ccc">
+        <ul class="list-group">
+          <% @post.comments.each do |comment| %>
+            <li class="row list-group-item" style="padding-left:100px;">
+              <p style="position: relative; font-size:60%; right: 50px;">
+                commented by USERNAME - <%= "#{time_ago_in_words(comment.created_at)} " %>
+              </p>
+              <%= comment.content %>
+              </br>
+            </li>
+          <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div id="subscription-button">
+      <%= render 'subreddits/subscription' %>
+    </div>
+    </br>
+    <%= @subreddit.description %>
+  </div>
+</div>

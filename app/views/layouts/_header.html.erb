@@ -1,0 +1,46 @@
+<div class="row" style="border-bottom: 1px solid #ccc">
+      <div class="col-sm-12" style="background-color: #d8d8d8;">
+        <%  @subreddits.each do |subreddit| %>
+          <%= link_to subreddit.name, subreddit_path(id: subreddit.id) %> &nbsp
+        <% end %>
+        <%= link_to "...", root_path %>
+      </div>
+</div>
+<div class="row" style="border-bottom: 1px solid #ccc">
+  <div class="col-sm-4" style="padding-right:20px; border-right: 1px solid #ccc">
+    Tidder
+    </br>
+    </br>
+    </br>
+    REDDIT CLONE PROJECT
+  </div>
+  <div class="col-sm-5" style="padding-right:20px; border-right: 3px solid #c80303">
+    <p style="text-align:center">
+      <% if @subreddit.present? %>
+        <%#= debug @subreddits.find_by_id(params[:subreddit_id]).name %>
+        <%= @subreddits.find_by_id(@subreddit.id).name %>
+      <% else %>
+        <%= "frontpage" %>
+      <% end %>  
+    </p>
+  </div>
+  <div class="col-sm-3" style="padding-right:20px;">
+    <p align="center" style="padding-top: 5px; font-size:80%">Logged in as: emptyhead</p>
+    <div class="btn-group-vertical">
+      <p>
+        <% if @subreddit.present? %>
+          <%= link_to "new post",  new_subreddit_post_path(@subreddit), 
+              :class => "btn btn-default btn-sm btn-block", 
+              :disabled => current_page?(controller: 'static_pages', action: 'frontpage') %>
+        <% else %>
+            <%= link_to "new post", subreddits_path, :class => "btn btn-default btn-sm btn-block", :disabled => true %>
+        <% end %>
+      </p>
+      <p>
+        <%= link_to "new subreddit",  new_subreddit_path, :class => "btn btn-default btn-sm btn-block" %>
+      </p>
+    </div>
+    <%= link_to "logout?",  destroy_user_session_path, :method => :delete,
+                                :class => "btn btn-default btn-sm btn-block" %>
+  </div>
+</div>

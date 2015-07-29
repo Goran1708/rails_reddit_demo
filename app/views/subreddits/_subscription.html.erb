@@ -1,0 +1,7 @@
+<% if current_user.subscribed_to? @subreddit %>
+  <%= link_to 'Unsubscribe?', subreddit_subscription_path(@subreddit, 
+          current_user.subreddit_subscriptions.find_by(subreddit: @subreddit)), 
+          method: :delete, remote: true  %>
+<% else %>
+  <%= link_to 'Subscribe', subreddit_subscriptions_path(@subreddit), method: :post, remote: true %>
+<% end %>

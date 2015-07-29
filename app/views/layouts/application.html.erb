@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RedditHomework03</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="container" style=" border-left: 3px solid #c80303">
+      <%= render 'layouts/header' %>
+      <%= yield %>
+    </div>
+  </div>
+</body>
+</html>
+
+<%#= debug(params) if Rails.env.development? %>
+<%#= debug @posts %>

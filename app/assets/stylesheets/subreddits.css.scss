@@ -1,0 +1,25 @@
+// Place all the styles related to the Subreddits controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.row{
+    overflow: hidden; 
+}
+
+[class*="col-"]{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
+.btn-group-vertical > button {
+    margin-bottom: 10px;
+    border-radius: 10px !important;
+}
+
+.btn {
+    margin-bottom: 10px;
+    border-radius: 10px !important;
+}
