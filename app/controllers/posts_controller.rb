@@ -62,7 +62,7 @@ class PostsController < ApplicationController
   
   def upvote
     @post = @subreddit.posts.find(params[:post_id])
-    Upvote.create(user: current_user, post: @post)
+    Upvote.find_or_create_by(user: current_user, post: @post)
     #@post.upvotes_count
     
     respond_to do |format|
