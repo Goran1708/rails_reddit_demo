@@ -1,4 +1,6 @@
 class Subreddit < ActiveRecord::Base
+  include RocketPants::Cacheable
+  
   has_many :posts
   has_many :subreddit_subscriptions
   has_many :users, through: :subreddit_subscriptions

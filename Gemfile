@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 
 #Devise 3.0 works with Rails 3.2 onwards
 gem 'devise'
+# Use RocketPants for creating API
+gem 'rocket_pants', '~> 1.0'
+#Serializer for Api models
+gem 'active_model_serializers'
 # Gemfile for Rails 3+, Sinatra, and Merb
 gem "will_paginate"
 gem 'will_paginate-bootstrap'

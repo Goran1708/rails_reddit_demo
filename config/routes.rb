@@ -14,6 +14,22 @@ Rails.application.routes.draw do
     end
     resources :subscriptions, only: [:create, :destroy], controller: 'subreddit_subscriptions'
   end
+  
+  namespace :api do
+    api version: 1, module: 'v1', allow_prefix: 'v' do
+      resources :subreddits, only: [:index, :show] do
+        resources :posts, only: [:index, :show]
+      end
+    end
+  end
+  
+  namespace :api do
+    api version: 1, module: 'v1', allow_prefix: 'v' do
+      resources :posts, except: [:index, :show, :create, :destroy, :update, :new, :edit] do
+        resources :comments, only: [:index, :show]
+      end
+    end
+  end
                                             
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
