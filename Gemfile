@@ -51,6 +51,9 @@ group :development, :test do
   # Gemfile for Rails 3+, Sinatra, and Merb
   gem "will_paginate"
   gem 'will_paginate-bootstrap'
+  
+  #opening email in browser
+  gem 'letter_opener'
 end
 
 group :production do

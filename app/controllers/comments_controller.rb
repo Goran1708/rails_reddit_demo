@@ -23,6 +23,7 @@ class CommentsController < ApplicationController
     
     #@post = Post.new(post_params)
     if @comment.save
+      send_notification(post)
       redirect_to root_path
     else
       render :new
@@ -61,4 +62,10 @@ class CommentsController < ApplicationController
   def comments_params
     params.require(:comment).permit(:post_id, :content)
   end
+  
+  def send_notification(post)
+    @user = User.find_by! nickname: post.creator_name
+    Notifications.comments(@user, @comment).deliver_now
+  end
+  
 end
