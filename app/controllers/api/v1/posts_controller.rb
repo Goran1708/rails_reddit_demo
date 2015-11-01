@@ -1,13 +1,14 @@
-class PostsController < ApplicationController
+class Api::V1::PostsController < Api::V1::ApiController
   before_action :load_subreddit
   
   def index
-    @posts = Post.all
+    expose Post.all.paginate(page: params[:page], per_page: 20), each_serializer: 
+                                                        Api::V1::PostSerializer
   end
   
   def show
     @subreddit = Subreddit.find(params[:subreddit_id])
-    @post = @subreddit.posts.find(params[:id])
+    expose @subreddit.posts.find(params[:id]), serializer: Api::V1::PostSerializer
   end
   
   def new 
@@ -22,14 +23,11 @@ class PostsController < ApplicationController
     subreddit = Subreddit.find(params[:subreddit_id])
     #2nd you create the comment with arguments in params[:comment]
     @post = subreddit.posts.create(post_params)
-    @post.creator_name = current_user.nickname
     
     #@post = Post.new(post_params)
     if @post.save
-      flash[:notice] = 'Your post was successfully created.'
       redirect_to root_path
     else
-      flash[:notice] = 'Post not created.'
       render :new
     end
   end

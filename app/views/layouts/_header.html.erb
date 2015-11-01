@@ -25,7 +25,13 @@
     </p>
   </div>
   <div class="col-sm-3" style="padding-right:20px;">
-    <p align="center" style="padding-top: 5px; font-size:80%">Logged in as: <%= current_user.nickname %></p>
+    <p align="center" style="padding-top: 5px; font-size:80%">Logged in as: 
+    <% if current_user.present?  %>
+      <%= current_user.nickname %>
+    <% else %>
+      USERNAME
+    <% end %>
+    </p>
     <div class="btn-group-vertical">
       <p>
         <% if @subreddit.present? %>
